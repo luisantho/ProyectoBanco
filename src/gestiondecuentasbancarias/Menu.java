@@ -15,6 +15,7 @@ public class Menu {
     public static void main(String[] args) {
         Scanner tcl = new Scanner(System.in);
         int num;
+        Cuentas cuenta = new Cuentas();
 
         do {
 
@@ -31,7 +32,7 @@ public class Menu {
 
             switch (num) {
                 case 1:
-                    //metodo 1
+                        cuenta.NuevaCuenta();
                     break;
                 case 2:
                     //metodo 2
@@ -48,5 +49,6 @@ public class Menu {
             }
 
         } while (num != 0);
+        
     }
 }
