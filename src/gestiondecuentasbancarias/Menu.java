@@ -35,7 +35,7 @@ public class Menu {
                         cuenta.NuevaCuenta();
                     break;
                 case 2:
-                    //metodo 2
+                        cuenta.ConsultarCuenta();
                     break;
                 case 3:
                     //metodo 3
