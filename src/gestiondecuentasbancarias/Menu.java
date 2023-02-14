@@ -33,12 +33,13 @@ public class Menu {
             switch (num) {
                 case 1:
                         cuenta.NuevaCuenta();
+                       
                     break;
                 case 2:
                         cuenta.ConsultarCuenta();
                     break;
                 case 3:
-                    //metodo 3
+                        cuenta.modificarCuenta();
                     break;
                 case 4:
                     //metodo 4
@@ -49,6 +50,7 @@ public class Menu {
             }
 
         } while (num != 0);
+   
         
     }
 }

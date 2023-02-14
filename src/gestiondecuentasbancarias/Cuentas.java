@@ -44,7 +44,7 @@ public class Cuentas {
         return cuenta2;
     }
  
-    public int NuevaCuenta() {
+    public void NuevaCuenta() {
 
         Scanner tcl = new Scanner(System.in);
         Ccuenta nuevaCuenta = new Ccuenta();
@@ -55,6 +55,7 @@ public class Cuentas {
 
         do {
             erroneo = true;
+            //Si el nombre esta vacio se captura una excepcion
             try {
                 System.out.println("Introduce tu nombre:");
                 nombre = tcl.nextLine();
@@ -67,6 +68,7 @@ public class Cuentas {
 
         do {
             erroneo = true;
+            //Si la cuenta esta vacia se capturar una excepcion
             try {
                 System.out.println("Introduce tu cuenta");
                 cuenta = tcl.nextLine();
@@ -119,8 +121,10 @@ public class Cuentas {
         cuentas.add(nuevaCuenta);
 
         //Devuelve la posicion
-        int pos = cuentas.lastIndexOf(nuevaCuenta);
-        return pos;
+        int pos = cuentas.size() -1;
+        System.out.println("");
+        System.out.println("Cuenta creada con exito");
+        System.out.println("Posicion cuenta:"+pos);
 
     }
 
@@ -134,11 +138,58 @@ public class Cuentas {
 
         for (int i = 0; i < cuentas.size(); i++) {
             if (cuentas.get(i).getCuenta().equals(cuenta)) {
-                System.out.println(cuenta.toString());
+                System.out.println(cuentas.get(i).toString());
 
             }
         }
 
+    }
+    //Metodo Modificar Cuenta
+    public void modificarCuenta() {
+        Scanner tcl = new Scanner(System.in);
+        int num;
+        String nomNuevo, cuentaNueva;
+        double saldoNuevo, tipoNuevo;
+        boolean erroneo;
+
+        do {
+            System.out.println("====== MODIFICAR CUENTA ======");
+            System.out.println("Introduce tu cuenta:");
+            String cuenta = tcl.nextLine();
+
+            System.out.println("1. Modidicar nombre");
+            System.out.println("2. Modificar cuenta");
+            System.out.println("3. Modificar saldo");
+            System.out.println("4. Modificar tipo de interes");
+            System.out.println("0. Salir ");
+            num = tcl.nextInt();
+
+            switch (num) {
+
+                case 1:
+                    do {
+                        erroneo = true;
+
+                        try {
+                            System.out.println("Introduce el nombre nuevo:");
+                            nomNuevo = tcl.nextLine();
+
+                            for (int i = 0; i < cuentas.size(); i++) {
+                                if (cuentas.get(i).getCuenta().equals(cuenta)) {
+                                    cuentas.get(i).setNombre(nomNuevo);
+
+                                }
+                                erroneo = false;
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                        
+                    } while (erroneo);
+            }
+            break;
+
+        } while (num != 0);
     }
 
 }

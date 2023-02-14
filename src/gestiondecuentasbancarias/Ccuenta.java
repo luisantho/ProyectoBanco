@@ -92,7 +92,7 @@ public class Ccuenta {
 
     @Override
     public String toString() {
-        return "Ccuenta{" + "nombre=" + nombre + ", cuenta=" + cuenta + ", saldo=" + saldo + ", tipoDeInteres=" + tipoDeInteres + '}';
+        return "Ccuenta:" + "nombre:" + nombre + ", cuenta:" + cuenta + ", saldo:" + saldo + ", tipoDeInteres:" + tipoDeInteres;
     }
      
 
