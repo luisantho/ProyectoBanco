@@ -127,7 +127,7 @@ public class Cuentas {
         System.out.println("Posicion cuenta:"+pos);
 
     }
-
+    //Metodo ConsultarCuenta
     public void ConsultarCuenta() {
         
         Scanner tcl = new Scanner(System.in);
@@ -156,13 +156,14 @@ public class Cuentas {
             System.out.println("====== MODIFICAR CUENTA ======");
             System.out.println("Introduce tu cuenta:");
             String cuenta = tcl.nextLine();
-
+            
             System.out.println("1. Modidicar nombre");
             System.out.println("2. Modificar cuenta");
             System.out.println("3. Modificar saldo");
             System.out.println("4. Modificar tipo de interes");
             System.out.println("0. Salir ");
             num = tcl.nextInt();
+            
 
             switch (num) {
 
@@ -171,7 +172,7 @@ public class Cuentas {
                         erroneo = true;
 
                         try {
-                            System.out.println("Introduce el nombre nuevo:");
+                            System.out.println("Introduce el nombre nuevo:");                            
                             nomNuevo = tcl.nextLine();
 
                             for (int i = 0; i < cuentas.size(); i++) {
@@ -179,17 +180,63 @@ public class Cuentas {
                                     cuentas.get(i).setNombre(nomNuevo);
 
                                 }
-                                erroneo = false;
+                               erroneo = false;
                             }
+                            
+                            
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
                         }
+                        
                         
                     } while (erroneo);
             }
             break;
 
         } while (num != 0);
+    }
+ 
+    //Metodo Anular Cuenta
+    public void AnularCuenta() {
+
+        Scanner tcl = new Scanner(System.in);
+        String cuenta;
+        Boolean erroneo;
+
+        do {
+            erroneo = true;
+            try {
+
+                System.out.println("====== ANULAR CUENTA ======");
+                System.out.println("Introduce tu numero de cuenta:");
+                cuenta = tcl.nextLine();
+
+                for (int i = 0; i < cuentas.size(); i++) {
+                    if (cuentas.get(i).getCuenta().equals(cuenta)) {
+                        cuentas.remove(i);
+                        System.out.println("Cuenta anulada con exito");
+                    }
+                    erroneo = false;
+
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+
+            }
+
+        } while (erroneo);
+
+    }
+
+    //Metodo Visualizar Cuentas
+    public void VisualizarCuentas() {
+
+        System.out.println("Listado de cuentas:");
+        for (int i = 0; i < cuentas.size(); i++) {
+
+            System.out.println("" + cuentas.get(i).toString());
+        }
+
     }
 
 }

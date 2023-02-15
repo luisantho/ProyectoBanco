@@ -42,10 +42,10 @@ public class Menu {
                         cuenta.modificarCuenta();
                     break;
                 case 4:
-                    //metodo 4
+                        cuenta.AnularCuenta();
                     break;
                 case 5:
-                    //metodo 5
+                        cuenta.VisualizarCuentas();
                     break;
             }
 
