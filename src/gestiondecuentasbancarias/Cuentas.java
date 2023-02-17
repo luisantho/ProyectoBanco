@@ -17,7 +17,49 @@ public class Cuentas {
     private ArrayList<Ccuenta> cuentas = new ArrayList();
     private int total;
 
-    //Metodos
+    
+    
+    //Metodo Buscar Cuenta
+    public  Ccuenta buscarCuenta(
+    ) {
+
+        Scanner tcl = new Scanner(System.in);
+        int res;
+         String nombre, cuenta;
+         Ccuenta cuentaEncontrada = null;
+
+        do {
+
+            System.out.println("====== BUSCAR CUENTA ======");
+            System.out.println("1.Buscar por nombre");
+            System.out.println("2.Buscar por cuenta");
+            System.out.println("0.Salir");
+            res = tcl.nextInt();
+            tcl.nextLine();
+
+            switch (res) {
+                case 1:
+                    System.out.println("Introduce tu nombre:");
+                    nombre = tcl.nextLine();
+                    cuentaEncontrada = poscuentanombre(nombre);
+                    
+                    break;
+                case 2:
+
+                    System.out.println("Introduce tu cuenta:");
+                    cuenta = tcl.nextLine();
+                    cuentaEncontrada = poscuenta(cuenta);
+                    break;
+            }
+            
+            return cuentaEncontrada;
+        } while (res != 0);
+        
+        
+
+    }
+    
+    //Metodo buscar por nombre
     public Ccuenta poscuentanombre(String nombre)  {
 
         Ccuenta cuenta = new Ccuenta();
@@ -31,6 +73,7 @@ public class Cuentas {
         return cuenta;
     }
 
+    //Metodo buscar por cuenta
     public Ccuenta poscuenta(String cuenta) {
         Ccuenta cuenta2 = new Ccuenta();
         for (int i = 0; i < cuentas.size(); i++) {
@@ -43,6 +86,8 @@ public class Cuentas {
         }
         return cuenta2;
     }
+    
+    //Metodo para crear una cuenta nueva
  
     public void NuevaCuenta() {
 
@@ -154,16 +199,13 @@ public class Cuentas {
 
         do {
             System.out.println("====== MODIFICAR CUENTA ======");
-            System.out.println("Introduce tu cuenta:");
-            String cuenta = tcl.nextLine();
-            
             System.out.println("1. Modidicar nombre");
             System.out.println("2. Modificar cuenta");
             System.out.println("3. Modificar saldo");
             System.out.println("4. Modificar tipo de interes");
             System.out.println("0. Salir ");
             num = tcl.nextInt();
-            
+            tcl.nextLine();
 
             switch (num) {
 
@@ -172,26 +214,106 @@ public class Cuentas {
                         erroneo = true;
 
                         try {
-                            System.out.println("Introduce el nombre nuevo:");                            
-                            nomNuevo = tcl.nextLine();
+                            System.out.println("Introduce tu numero de cuenta:");
+                            String cuenta = tcl.nextLine();
 
                             for (int i = 0; i < cuentas.size(); i++) {
                                 if (cuentas.get(i).getCuenta().equals(cuenta)) {
+                                    System.out.println("Introduce el nombre nuevo:");
+                                    nomNuevo = tcl.nextLine();
                                     cuentas.get(i).setNombre(nomNuevo);
+                                    System.out.println("Nombre modificado con exito");
 
                                 }
-                               erroneo = false;
+                                erroneo = false;
                             }
-                            
-                            
+
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
                         }
-                        
-                        
+
                     } while (erroneo);
+                    break;
+
+                case 2:
+                    do {
+                        erroneo = true;
+
+                        try {
+                            System.out.println("Introduce tu numero de cuenta:");
+                            String cuenta = tcl.nextLine();
+
+                            for (int i = 0; i < cuentas.size(); i++) {
+                                if (cuentas.get(i).getCuenta().equals(cuenta)) {
+                                    System.out.println("Introduce tu cuenta nueva:");
+                                    cuentaNueva = tcl.nextLine();
+                                    cuentas.get(i).setCuenta(cuentaNueva);
+                                    System.out.println("Cuenta modificada con exito");
+
+                                }
+                                erroneo = false;
+                            }
+
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+
+                    } while (erroneo);
+
+                    break;
+
+                case 3:
+                    do {
+                        erroneo = true;
+
+                        try {
+                            System.out.println("Introduce tu numero de cuenta:");
+                            String cuenta = tcl.nextLine();
+
+                            for (int i = 0; i < cuentas.size(); i++) {
+                                if (cuentas.get(i).getCuenta().equals(cuenta)) {
+                                    System.out.println("Introduce tu saldo nuevo:");
+                                    saldoNuevo = tcl.nextInt();
+                                    cuentas.get(i).setSaldo(saldoNuevo);
+                                    System.out.println("Saldo modificado con exito");
+
+                                }
+                                erroneo = false;
+                            }
+
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+
+                    } while (erroneo);
+                    break;
+
+                case 4:
+                    do {
+                        erroneo = true;
+
+                        try {
+                            System.out.println("Introduce tu numero de cuenta:");
+                            String cuenta = tcl.nextLine();
+
+                            for (int i = 0; i < cuentas.size(); i++) {
+                                if (cuentas.get(i).getCuenta().equals(cuenta)) {
+                                    System.out.println("Introduce tu tipo de interes nuevo:");
+                                    tipoNuevo = tcl.nextInt();
+                                    cuentas.get(i).setTipoDeInteres(tipoNuevo);
+                                    System.out.println("Tipo de interes modificado con exito");
+
+                                }
+                                erroneo = false;
+                            }
+
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+
+                    } while (erroneo);
+
             }
-            break;
 
         } while (num != 0);
     }
@@ -213,8 +335,14 @@ public class Cuentas {
 
                 for (int i = 0; i < cuentas.size(); i++) {
                     if (cuentas.get(i).getCuenta().equals(cuenta)) {
-                        cuentas.remove(i);
-                        System.out.println("Cuenta anulada con exito");
+                        //Una vez encuentra la cuenta, comrpueba que el saldo es igual a 0
+                        if (cuentas.get(i).getSaldo() == 0) {
+                            cuentas.remove(i);
+                            System.out.println("Cuenta anulada con exito");
+                        } else {
+                            System.out.println("Error, saldo mayor a 0");
+                        }
+
                     }
                     erroneo = false;
 
@@ -230,6 +358,7 @@ public class Cuentas {
 
     //Metodo Visualizar Cuentas
     public void VisualizarCuentas() {
+        
 
         System.out.println("Listado de cuentas:");
         for (int i = 0; i < cuentas.size(); i++) {

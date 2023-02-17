@@ -36,7 +36,8 @@ public class Menu {
                        
                     break;
                 case 2:
-                        cuenta.ConsultarCuenta();
+                        cuenta.buscarCuenta();
+                        
                     break;
                 case 3:
                         cuenta.modificarCuenta();
